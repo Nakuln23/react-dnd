@@ -26,7 +26,7 @@ const styles = (theme) => ({
   });
 
 const MapQuestionTypes = (props) => {
-  console.log(props)
+  // console.log(props)
     return props.connectDragSource(
         <div>
             <Paper className={props.classes.typePaper}>
@@ -46,13 +46,23 @@ const collect = (connect, monitor) => {
 }
 
 const cardSource = {
-  beginDrag(props, monitor, component) {
-    const item = { id: props.types.id };
-    return item;
+  beginDrag(props, monitor) {
+    console.log ('Begin dragging')
+    const questionType = { component : props.type.component };
+    console.log('***********',questionType)
+    return questionType;
   },
-  // endDrag(props,monitor,component) {
-  //   return props.handleDrop.props.item.id
-  // }
+  endDrag(props,monitor,component) {
+    // const {onDrop} = props
+    if(!monitor.didDrop()){
+      return null
+    }
+    const questionType = props.type.component;
+    return props.handleDrop(questionType)
+
+    // console.log(id)
+    // onDrop(id);
+  }
 };
 
 export default DragSource("SOURCE", cardSource, collect)(withStyles(styles)(MapQuestionTypes))

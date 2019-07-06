@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { withStyles } from '@material-ui/core/styles'
+import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import SelectQuestionType from './SelectQuestionType';
@@ -7,9 +7,9 @@ import ChoiceTypeSelected from './ChoiceTypeSelected';
 import Typography from '@material-ui/core/Typography';
 import MapQuestionTypes from './MapQuestionTypes';
 import HTML5Backend from 'react-dnd-html5-backend'
-// import { DragDropContext } from 'react-dnd';
 import { DragDropContext } from "react-dnd";
-// import DragDropContext from 'react-dnd/lib/cjs/DragDropContext.js';
+import TargetDropArea from './TargetDropArea';
+import Marks from './Marks';
 
 const styles = (theme) => ({
     root: {
@@ -25,44 +25,57 @@ const styles = (theme) => ({
 class Index extends Component {
 
   state = {
-    questionTypes : [
+    loadComponent : null,
+    questionTypes : 
+    // [
       {
         id : 1,
         select : "Choice",
         Icon : "CheckCircleOutlined",
+        component : <ChoiceTypeSelected/>
       },
-      {
-        id : 2,
-        select : "Order",
-        Icon : "CheckCircleOutlined",
-      },
-      {
-        id : 3,
-        select : "Match",
-        Icon : "CheckCircleOutlined",
-      },
+      // {
+      //   id : 2,
+      //   select : "Order",
+      //   Icon : "CheckCircleOutlined",
+      // },
+      // {
+      //   id : 3,
+      //   select : "Match",
+      //   Icon : "CheckCircleOutlined",
+      // },
 
-    ]
+    // ]
   }
 
-  handleDrop = (id) => {
-     console.log(id)
+  handleDrop = (questionType) => {
+    //  if (id == 1) {
+       console.log('***************',questionType)
+
+       this.setState({
+        loadComponent : questionType
+       })
+       
+    //  }
     }
   
   render() {
     const {classes} = this.props;
     const {questionTypes} = this.state;
-    console.log(questionTypes)
+    // console.log('*************************',questionTypes)
       return (
         <div className = {classes.root}>
               <Grid container spacing={3}>
                 <Grid item xs={4}>
-                  <SelectQuestionType types={questionTypes} handleDrop = {(id)=> {
-                    this.handleDrop(id)
+                  <SelectQuestionType types={questionTypes} handleDrop = {(questionType)=> {
+                    this.handleDrop(questionType)
                   }}/> 
+                <Marks/>
                 </Grid>
+                
                 <Grid item xs={8}>
-                  <ChoiceTypeSelected/>
+                  
+                  {this.state.loadComponent ? this.state.loadComponent : <TargetDropArea/>  }
                 </Grid>
               </Grid>
         </div>

@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import CheckCircleOutlined from '@material-ui/icons/CheckCircleOutlined';
+import Container from '@material-ui/core/Container'
 import MapQuestionTypes from './MapQuestionTypes';
 
 const styles = (theme) => ({
@@ -18,22 +18,24 @@ const SelectQuestionType = ({classes, types, handleDrop}) => {
         <div>
             <Paper className={classes.root}>
                 <Typography variant="h5" component="h3">
-                         Question Types
-                    </Typography>
+                         QUESTION TYPES
+                </Typography>
                     <Grid container spacing={2}>
-                         {types.map(type => {
+                        <Container maxWidth="sm">
+
+                        <MapQuestionTypes type = {types} handleDrop = {handleDrop} />
+                         {/* {types.map(type => {
                         return (
                         <Grid item xs={4}>
                             <MapQuestionTypes type={type} handleDrop = {handleDrop}/>
                         </Grid>
                         ) 
-                        })}
+                        })} */}
+                        </Container>
                     </Grid>
             </Paper> 
         </div>
     )
 }
-
-
 
 export default withStyles(styles)(SelectQuestionType)
