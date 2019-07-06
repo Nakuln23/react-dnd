@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,14 +22,14 @@ const SelectQuestionType = ({classes, types, handleDrop}) => {
                     <Grid container spacing={2}>
                         <Container maxWidth="sm">
 
-                        <MapQuestionTypes type = {types} handleDrop = {handleDrop} />
-                         {/* {types.map(type => {
+                        {/* <MapQuestionTypes type = {types} handleDrop = {handleDrop} /> */}
+                         {types.map(type => {
                         return (
                         <Grid item xs={4}>
                             <MapQuestionTypes type={type} handleDrop = {handleDrop}/>
                         </Grid>
                         ) 
-                        })} */}
+                        })}
                         </Container>
                     </Grid>
             </Paper> 

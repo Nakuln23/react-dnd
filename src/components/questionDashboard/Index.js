@@ -27,25 +27,25 @@ class Index extends Component {
   state = {
     loadComponent : null,
     questionTypes : 
-    // [
+    [
       {
         id : 1,
         select : "Choice",
         Icon : "CheckCircleOutlined",
         component : <ChoiceTypeSelected/>
       },
-      // {
-      //   id : 2,
-      //   select : "Order",
-      //   Icon : "CheckCircleOutlined",
-      // },
-      // {
-      //   id : 3,
-      //   select : "Match",
-      //   Icon : "CheckCircleOutlined",
-      // },
+      {
+        id : 2,
+        select : "Order",
+        Icon : "CheckCircleOutlined",
+      },
+      {
+        id : 3,
+        select : "Match",
+        Icon : "CheckCircleOutlined",
+      },
 
-    // ]
+     ]
   }
 
   handleDrop = (questionType) => {
